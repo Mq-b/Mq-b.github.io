@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/18/66/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/18/lambda%E7%9A%84%E6%8D%95%E8%8E%B7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -159,7 +159,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/18/66/" class="post-title-link" itemprop="url">66</a>
+            <a href="/2022/05/18/lambda%E7%9A%84%E6%8D%95%E8%8E%B7/" class="post-title-link" itemprop="url">Untitled</a>
         </h2>
 
         <div class="post-meta">
@@ -168,8 +168,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2022-05-18 12:49:47" itemprop="dateCreated datePublished" datetime="2022-05-18T12:49:47+08:00">2022-05-18</time>
+              <time title="Created: 2022-05-18 15:45:13 / Modified: 16:17:26" itemprop="dateCreated datePublished" datetime="2022-05-18T15:45:13+08:00">2022-05-18</time>
             </span>
 
           
@@ -183,133 +184,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-      
-    </div>
+          <h1 id="lambda的捕获"><a href="#lambda的捕获" class="headerlink" title="lambda的捕获"></a>lambda的捕获</h1><h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Demo</span>(<span class="type">int</span> i):<span class="built_in">m</span>(i)&#123;&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		[<span class="keyword">this</span>] &#123;std::cout &lt;&lt; m &lt;&lt; std::endl; &#125;();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">demo</span><span class="params">(<span class="type">int</span> a)</span> </span>&#123;</span><br><span class="line">		[=,<span class="keyword">this</span>] &#123; <span class="keyword">this</span>-&gt;m = a; &#125;();<span class="comment">//有所不同的是没有[&amp;this]这种东西，只需要像目前这样就能修改成员变量的值了</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		[<span class="keyword">this</span>] &#123;<span class="keyword">this</span>-&gt;m = <span class="number">111</span>; &#125;();	<span class="comment">//其实加不jia=都可以直接改变成员变量，但是没用=捕获的话没办法获取传入的值，不能像上面那样</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">int</span> m = <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//当不接收参数的时候可以省略()，最后加上()是为了调用,下面这些产生的结果是一样的，至少在目前是的</span></span><br><span class="line">	std::cout &lt;&lt; [] &#123; <span class="keyword">return</span> <span class="number">5</span>; &#125;() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">	std::cout &lt;&lt; []()-&gt;<span class="keyword">decltype</span>(<span class="keyword">auto</span>) &#123;<span class="keyword">return</span> <span class="number">5</span>; &#125;() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">	std::cout &lt;&lt; []()-&gt;<span class="type">int</span> &#123;<span class="keyword">return</span> <span class="number">5</span>; &#125;() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">	std::cout &lt;&lt; []()-&gt;<span class="keyword">auto</span> &#123;<span class="keyword">return</span> <span class="number">5</span>; &#125;() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="type">int</span> a = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">//或者接收参数</span></span><br><span class="line">	<span class="keyword">auto</span> p = [](<span class="type">int</span> b) &#123;std::cout &lt;&lt; b &lt;&lt; std::endl; &#125;;</span><br><span class="line">	<span class="built_in">p</span>(a);</span><br><span class="line">	<span class="keyword">auto</span> p2 = [](<span class="keyword">auto</span> b) &#123;std::cout &lt;&lt; b &lt;&lt; std::endl; &#125;;</span><br><span class="line">	<span class="built_in">p2</span>(a);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//或者直接捕获 下面的区别无非是捕获整个作用域和捕获具体的变量</span></span><br><span class="line">	[=] &#123;std::cout &lt;&lt; a &lt;&lt; std::endl; &#125;();</span><br><span class="line">	[i = a] &#123;std::cout &lt;&lt; i &lt;&lt; std::endl; &#125;();</span><br><span class="line"></span><br><span class="line">	<span class="comment">//或者直接修改</span></span><br><span class="line">	[&amp;] &#123;a = <span class="number">100</span>; std::cout &lt;&lt; a &lt;&lt; std::endl; &#125;();</span><br><span class="line"></span><br><span class="line">	[&amp;a] &#123;a = <span class="number">100</span>; std::cout &lt;&lt; a &lt;&lt; std::endl; &#125;();</span><br><span class="line"></span><br><span class="line">	[ca=std::<span class="built_in">as_const</span>(a)] ()<span class="keyword">mutable</span> &#123;ca = <span class="number">10</span>; std::cout &lt;&lt; ca &lt;&lt; std::endl; &#125;();</span><br><span class="line">	std::cout &lt;&lt; a &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//下面这是在类内的捕获情况</span></span><br><span class="line">	<span class="function">Demo <span class="title">demo</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">demo</span>();</span><br><span class="line"></span><br><span class="line">	demo.<span class="built_in">demo</span>(<span class="number">123</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">demo</span>();</span><br><span class="line"></span><br><span class="line">	demo.<span class="built_in">test</span>();<span class="comment">//这种方式是无法改变成员变量的值的</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">demo</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//其实还有很多操作，最后补充一下，可以像下面这样</span></span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">e</span><span class="params">(<span class="number">0</span>)</span>, <span class="title">f</span><span class="params">(<span class="number">0</span>)</span>, <span class="title">g</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">	[E = e, F = f, G = g] &#123;std::cout &lt;&lt; E &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; F &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; G &lt;&lt; std::endl; &#125;();</span><br><span class="line"></span><br><span class="line">	[&amp;E = e, &amp;F = f, &amp;G = g] &#123;E = <span class="number">1</span>, F = <span class="number">2</span>, G = <span class="number">3</span>; std::cout &lt;&lt; E &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; F &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; G &lt;&lt; std::endl; &#125;();</span><br><span class="line">	std::cout &lt;&lt; e &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; f &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; g &lt;&lt; std::endl;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//另外，不省略()然后-&gt;指定类型啥的其实都行，如果是引用捕获的时候()mutable的话也合法，虽然没啥区别，先这样，语法糖而已</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/18/2022-5-18-%E6%97%A0%E8%B6%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/18/2022-5-18-%E6%97%A0%E8%B6%A3/" class="post-title-link" itemprop="url">2022/5/18,无趣</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-05-18 12:46:26" itemprop="dateCreated datePublished" datetime="2022-05-18T12:46:26+08:00">2022-05-18</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/18/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/18/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-05-18 09:20:00" itemprop="dateCreated datePublished" datetime="2022-05-18T09:20:00+08:00">2022-05-18</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<blockquote>
+<p>如果不懂lambda的话，当成匿名函数就行</p>
+</blockquote>
+<p><strong>有问题发邮件</strong></p>
 
       
     </div>
@@ -391,7 +271,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
