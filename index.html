@@ -81,7 +81,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="تشغيل شريط التصفح">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -115,7 +115,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>الأرشيفات</a>
 
   </li>
   </ul>
@@ -145,6 +145,110 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="CH">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/19/MySQL%E5%9C%A8Linux%E4%B8%8B%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/19/MySQL%E5%9C%A8Linux%E4%B8%8B%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" class="post-title-link" itemprop="url">MySQL在Linux下配置环境</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+              
+
+              <time title="أُنشأ: 2022-05-19 14:34:01 / عُدل: 14:34:42" itemprop="dateCreated datePublished" datetime="2022-05-19T14:34:01+08:00">2022-05-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="MySQL8-0-26-Linux版安装"><a href="#MySQL8-0-26-Linux版安装" class="headerlink" title="MySQL8.0.26-Linux版安装"></a>MySQL8.0.26-Linux版安装</h2><h3 id="1-准备一台Linux服务器"><a href="#1-准备一台Linux服务器" class="headerlink" title="1. 准备一台Linux服务器"></a>1. 准备一台Linux服务器</h3><p>云服务器或者虚拟机都可以; </p>
+<p>Linux的版本为 CentOS7;</p>
+<h3 id="2-下载Linux版MySQL安装包"><a href="#2-下载Linux版MySQL安装包" class="headerlink" title="2. 下载Linux版MySQL安装包"></a>2. 下载Linux版MySQL安装包</h3><p><a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/community/">https://downloads.mysql.com/archives/community/</a></p>
+<p><img src="/assets/image-20211031230239760.png" alt="image-20211031230239760"> </p>
+<h3 id="3-上传MySQL安装包"><a href="#3-上传MySQL安装包" class="headerlink" title="3. 上传MySQL安装包"></a>3. 上传MySQL安装包</h3><p><img src="/assets/image-20211031231930205.png" alt="image-20211031231930205"> </p>
+<h3 id="4-创建目录-并解压"><a href="#4-创建目录-并解压" class="headerlink" title="4. 创建目录,并解压"></a>4. 创建目录,并解压</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir mysql</span><br><span class="line"></span><br><span class="line">tar -xvf mysql-8.0.26-1.el7.x86_64.rpm-bundle.tar -C mysql</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-安装mysql的安装包"><a href="#5-安装mysql的安装包" class="headerlink" title="5. 安装mysql的安装包"></a>5. 安装mysql的安装包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">cd mysql</span><br><span class="line"></span><br><span class="line">rpm -ivh mysql-community-common-8.0.26-1.el7.x86_64.rpm </span><br><span class="line"></span><br><span class="line">rpm -ivh mysql-community-client-plugins-8.0.26-1.el7.x86_64.rpm </span><br><span class="line"></span><br><span class="line">rpm -ivh mysql-community-libs-8.0.26-1.el7.x86_64.rpm </span><br><span class="line"></span><br><span class="line">rpm -ivh mysql-community-libs-compat-8.0.26-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line">yum install openssl-devel</span><br><span class="line"></span><br><span class="line">rpm -ivh  mysql-community-devel-8.0.26-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line">rpm -ivh mysql-community-client-8.0.26-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line">rpm -ivh  mysql-community-server-8.0.26-1.el7.x86_64.rpm</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-启动MySQL服务"><a href="#6-启动MySQL服务" class="headerlink" title="6. 启动MySQL服务"></a>6. 启动MySQL服务</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart mysqld</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop mysqld</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="7-查询自动生成的root用户密码"><a href="#7-查询自动生成的root用户密码" class="headerlink" title="7. 查询自动生成的root用户密码"></a>7. 查询自动生成的root用户密码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &#x27;temporary password&#x27; /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
+
+<p>命令行执行指令 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<p>然后输入上述查询到的自动生成的密码, 完成登录 .</p>
+<h3 id="8-修改root用户密码"><a href="#8-修改root用户密码" class="headerlink" title="8. 修改root用户密码"></a>8. 修改root用户密码</h3><p>登录到MySQL之后，需要将自动生成的不便记忆的密码修改了，修改成自己熟悉的便于记忆的密码。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER  USER  &#x27;root&#x27;@&#x27;localhost&#x27;  IDENTIFIED BY &#x27;1234&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>执行上述的SQL会报错，原因是因为设置的密码太简单，密码复杂度不够。我们可以设置密码的复杂度为简单类型，密码长度为4。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set global validate_password.policy = 0;</span><br><span class="line">set global validate_password.length = 4;</span><br></pre></td></tr></table></figure>
+
+<p>降低密码的校验规则之后，再次执行上述修改密码的指令。</p>
+<h3 id="9-创建用户"><a href="#9-创建用户" class="headerlink" title="9. 创建用户"></a>9. 创建用户</h3><p>默认的root用户只能当前节点localhost访问，是无法远程访问的，我们还需要创建一个root账户，用户远程访问</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user &#x27;root&#x27;@&#x27;%&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;1234&#x27;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="10-并给root用户分配权限"><a href="#10-并给root用户分配权限" class="headerlink" title="10. 并给root用户分配权限"></a>10. 并给root用户分配权限</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all on *.* to &#x27;root&#x27;@&#x27;%&#x27;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="11-重新连接MySQL"><a href="#11-重新连接MySQL" class="headerlink" title="11. 重新连接MySQL"></a>11. 重新连接MySQL</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<p>然后输入密码</p>
+<h3 id="12-通过DataGrip远程连接MySQL"><a href="#12-通过DataGrip远程连接MySQL" class="headerlink" title="12. 通过DataGrip远程连接MySQL"></a>12. 通过DataGrip远程连接MySQL</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="CH">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/19/Linux%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -167,10 +271,10 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Created: 2022-05-19 13:50:10 / Modified: 13:50:57" itemprop="dateCreated datePublished" datetime="2022-05-19T13:50:10+08:00">2022-05-19</time>
+              <time title="أُنشأ: 2022-05-19 13:50:10 / عُدل: 13:50:57" itemprop="dateCreated datePublished" datetime="2022-05-19T13:50:10+08:00">2022-05-19</time>
             </span>
 
           
@@ -282,10 +386,10 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Created: 2022-05-18 20:17:42 / Modified: 20:20:30" itemprop="dateCreated datePublished" datetime="2022-05-18T20:17:42+08:00">2022-05-18</time>
+              <time title="أُنشأ: 2022-05-18 20:17:42 / عُدل: 20:20:30" itemprop="dateCreated datePublished" datetime="2022-05-18T20:17:42+08:00">2022-05-18</time>
             </span>
 
           
@@ -809,10 +913,10 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Created: 2022-05-18 16:43:45 / Modified: 16:47:10" itemprop="dateCreated datePublished" datetime="2022-05-18T16:43:45+08:00">2022-05-18</time>
+              <time title="أُنشأ: 2022-05-18 16:43:45 / عُدل: 16:47:10" itemprop="dateCreated datePublished" datetime="2022-05-18T16:43:45+08:00">2022-05-18</time>
             </span>
 
           
@@ -891,10 +995,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          المحتويات
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          عام
         </li>
       </ul>
 
@@ -913,8 +1017,8 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">المقالات</span>
         </a>
       </div>
   </nav>
@@ -947,7 +1051,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">John Doe</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
         
