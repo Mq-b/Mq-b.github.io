@@ -81,7 +81,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="تشغيل شريط التصفح">
+    <div class="toggle" aria-label="Toggle navigation bar">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -115,7 +115,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>الأرشيفات</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
   </li>
   </ul>
@@ -145,6 +145,121 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="CH">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/19/Linux%E7%BB%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/19/Linux%E7%BB%84/" class="post-title-link" itemprop="url">Linux组</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-05-19 13:50:10 / Modified: 13:50:57" itemprop="dateCreated datePublished" datetime="2022-05-19T13:50:10+08:00">2022-05-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Linux组"><a href="#Linux组" class="headerlink" title="Linux组"></a>Linux组</h2><h3 id="67-Linux组的基本介绍"><a href="#67-Linux组的基本介绍" class="headerlink" title="67. Linux组的基本介绍"></a>67. Linux组的基本介绍</h3><ol>
+<li>在Linux中的每个用户必须属于一个组 不能独立于组外 在Linux中每个文件有所有者 所有组 所在组 其他组的概念<ol>
+<li>所有者</li>
+<li>所在组</li>
+<li>其他组</li>
+<li>改变用户所在的组</li>
+</ol>
+</li>
+</ol>
+<h3 id="68-文件-x2F-目录-所有者"><a href="#68-文件-x2F-目录-所有者" class="headerlink" title="68. 文件&#x2F;目录 所有者"></a>68. 文件&#x2F;目录 所有者</h3><ol>
+<li>一般为文件的创建者 谁创建了该文件 就自然成为该文件的所有者</li>
+<li>查看文件的所有者<ol>
+<li>指令:<code>ls -ahl</code></li>
+<li>应用实例 修改文件所有者 指令:<code>chown 用户名 文件名</code></li>
+<li>应用案例 要求root创建一个文件apple.txt 然后将其所有者修改成 tome<code>chown tom apple.txt</code></li>
+</ol>
+</li>
+</ol>
+<h3 id="69-组的创建"><a href="#69-组的创建" class="headerlink" title="69. 组的创建"></a>69. 组的创建</h3><ol>
+<li>基本指令<code>groupadd 组名</code></li>
+<li>应用实例<ol>
+<li>创建一个组 monster<code>groupadd monster</code></li>
+<li>创建一个用户 fox 并放到monster组中<code>useradd -g monster fox</code> 可以使用id命令查看用户所在组<code>id fox </code></li>
+</ol>
+</li>
+</ol>
+<h3 id="70-文件-x2F-目录-所在组"><a href="#70-文件-x2F-目录-所在组" class="headerlink" title="70. 文件&#x2F;目录 所在组"></a>70. 文件&#x2F;目录 所在组</h3><ol>
+<li>查看文件&#x2F;目录所在组</li>
+<li>基本指令 <code>ls -ahl</code><ol>
+<li>使用fox来创建一个文件 看看该文件属于哪个组 <strong>因为前面我们把fox用户放在monster组中 所以创建的文件所在的组就是monster</strong></li>
+</ol>
+</li>
+<li>应用实例<ol>
+<li>修改文件所在的组 基本指令 <code>chgrp 组名 文件名</code></li>
+<li>应用实例 使用root用户创建文件 orange.txt 看看当前这个文件属于哪个组 然后将这个文件所在组 修改到fruit组<ol>
+<li><code>groupadd fruit</code>(先创建组)</li>
+<li><code>touch orange.txt</code>(创建一个文件)</li>
+<li>看看当前这个文件属于哪一个组-&gt; root组</li>
+<li><code>chgrp fruit orange.txt</code>(修改所在组)<br><strong>文件和目录都可以这样操作</strong></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="71-其他组"><a href="#71-其他组" class="headerlink" title="71. 其他组"></a>71. 其他组</h3><ol>
+<li>除文件的所有者和所在组的用户外 系统改变其他用户都是文件的其他组<h4 id="改变用户所在组"><a href="#改变用户所在组" class="headerlink" title="改变用户所在组"></a>改变用户所在组</h4></li>
+<li>在添加用户时 可以指定将该用户添加到组中 同样的用root的管理权限可以改变某个用户所在的组</li>
+<li>改变用户所在组<ol>
+<li><code>usermod -g 新组名 用户名</code></li>
+<li><code>usermod -d 目录名 改变该用户登录的初始目录</code><strong>用户需要有进入到新目录的权限</strong></li>
+</ol>
+</li>
+<li>应用实例<ol>
+<li>将zwj这个用户从原来梭子啊的组 修改到wudang组<code>usermod -g wudang zwj</code></li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="CH">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/18/Linux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -167,10 +282,10 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">نُشر في</span>
+              <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="أُنشأ: 2022-05-18 20:17:42 / عُدل: 20:20:30" itemprop="dateCreated datePublished" datetime="2022-05-18T20:17:42+08:00">2022-05-18</time>
+              <time title="Created: 2022-05-18 20:17:42 / Modified: 20:20:30" itemprop="dateCreated datePublished" datetime="2022-05-18T20:17:42+08:00">2022-05-18</time>
             </span>
 
           
@@ -694,10 +809,10 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">نُشر في</span>
+              <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="أُنشأ: 2022-05-18 16:43:45 / عُدل: 16:47:10" itemprop="dateCreated datePublished" datetime="2022-05-18T16:43:45+08:00">2022-05-18</time>
+              <time title="Created: 2022-05-18 16:43:45 / Modified: 16:47:10" itemprop="dateCreated datePublished" datetime="2022-05-18T16:43:45+08:00">2022-05-18</time>
             </span>
 
           
@@ -776,10 +891,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          المحتويات
+          Table of Contents
         </li>
         <li class="sidebar-nav-overview">
-          عام
+          Overview
         </li>
       </ul>
 
@@ -798,8 +913,8 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
-          <span class="site-state-item-name">المقالات</span>
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">posts</span>
         </a>
       </div>
   </nav>
@@ -832,7 +947,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">John Doe</span>
 </div>
-  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
         
